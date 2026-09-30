@@ -8,9 +8,10 @@ TÌNH HÌNH CỦA TÔI
 - Tôi dành khoảng 3-4 tiếng mỗi ngày. Giải thích bằng tiếng Việt, giữ nguyên thuật ngữ tiếng Anh.
 
 DỰ ÁN: EXPENSE TRACKER (ỨNG DỤNG DESKTOP QUẢN LÝ CHI TIÊU)
-- Ngôn ngữ: Python 3.
+- Ngôn ngữ: Python 3. Bắt buộc sử dụng môi trường ảo (venv) để quản lý thư viện.
 - Giao diện: cửa sổ desktop bằng Tkinter (có thể thêm ttkbootstrap cho đẹp).
 - Database: PostgreSQL, kết nối bằng psycopg (hoặc psycopg2). Cấu hình kết nối đọc từ biến môi trường / file .env, không hard-code mật khẩu.
+- Quản lý mã nguồn: Sử dụng Git với quy trình tạo Branch (phân nhánh) cho từng tính năng rồi mới Merge vào nhánh main.
 - Bảng expenses: id (khóa chính tự tăng), amount (số tiền, kiểu số), category (danh mục), note (ghi chú), spent_on (ngày chi, kiểu DATE), created_at (thời điểm tạo).
 - Chức năng: thêm khoản chi; xem danh sách trong bảng (Treeview); xóa khoản chi đã chọn; lọc theo tháng và danh mục; thống kê tổng chi và tổng theo từng danh mục; biểu đồ theo danh mục bằng Matplotlib (chỉ làm nếu còn thời gian); báo lỗi bằng hộp thoại khi nhập sai, không để ứng dụng crash.
 - Kiến trúc tách lớp:
@@ -32,10 +33,10 @@ QUY TRÌNH DEBUG BẮT BUỘC
 Mỗi khi tôi gặp lỗi và dán traceback, đừng sửa hộ. Hãy dẫn tôi qua 5 bước:
 1. Đọc traceback từ dưới lên: loại lỗi là gì, nằm ở dòng nào trong file của tôi.
 2. Tôi tự viết giả thuyết: "Tôi nghĩ nguyên nhân là...".
-3. Hướng dẫn tôi cách kiểm chứng: print(type(x), x), hoặc đặt breakpoint và chạy debugger của VS Code, quan sát giá trị biến.
+3. Hướng dẫn tôi cách kiểm chứng bằng VS Code Debugger. Tuyệt đối hạn chế dùng `print()`. Tôi cần làm quen với việc đặt breakpoint, theo dõi Call Stack và xem giá trị biến lúc runtime như một lập trình viên chuyên nghiệp.
 4. Tôi tự sửa và chạy lại.
 5. Yêu cầu tôi ghi vào bug_log.md: lỗi gì, nguyên nhân thật, cách sửa, bài học. Sau đó bạn nhận xét giả thuyết của tôi đúng hay sai và vì sao.
-Ở ngày 1, dạy tôi cách bật và dùng debugger của VS Code (breakpoint, step over, step into, xem biến).
+Ở ngày 1, dạy tôi cách sử dụng VS Code Debugger chuẩn (breakpoint, step over, step into, watch, call stack). Hướng dẫn luôn các lệnh Git cơ bản (checkout -b, commit, merge).
 
 KẾ HOẠCH 3 NGÀY
 Ngày 1: Cài đặt và tạo database PostgreSQL, tạo bảng expenses. Viết db.py (kết nối, insert, select, delete) và logic.py (kiểm tra input, thêm/xóa/lọc/thống kê). Chạy thử bằng script ngắn, chưa có giao diện. Trọng tâm: hàm, list/dict, try/except, đọc traceback, SQL cơ bản, query có tham số, biến môi trường.
