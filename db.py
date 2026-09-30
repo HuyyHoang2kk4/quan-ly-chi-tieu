@@ -49,9 +49,39 @@ def get_all_expense():
     
     return expense_list
 
+def delete_expense(delete_id):
+    conn = get_connection()
+    cur = conn.cursor()
+    sql_query = """ 
+        DELETE FROM expenses where id = %s 
+    """
+    cur.execute(sql_query , (delete_id,))
+    conn.commit()
+    conn.close()
+
+def update_expense(expense_id ,amount, category, note, spent_on):
+    conn = get_connection()
+
+    cur = conn.cursor()
+
+    sql_query = """ 
+        UPDATE expenses
+        SET amount = %s , category = %s , note = %s , spent_on=%s
+        WHERE id = %s 
+    """
+
+    cur.execute(sql_query, (amount, category, note, spent_on,expense_id,))
+
+    conn.commit()
+
+    conn.close()
+
 
 
 if __name__ == "__main__":
-    add_expense(999999, "Ăn ", "Phở bò", "2023-10-31")
+    # print(result)
+
+    update_expense(2 , 9999999 ,"UPDATE ", "UPDATE" , "2026-10-10")
     result = get_all_expense()
     print(result)
+
