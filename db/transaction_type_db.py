@@ -1,4 +1,4 @@
-from src.transactions_db import get_connection
+from db.transactions_db import get_connection
 
 def get_all_transaction_type() :
     conn = get_connection()
@@ -48,3 +48,15 @@ def update_transaction_type(transaction_type_id , transaction_type_name):
     cur.execute(sql_query, (transaction_type_name ,transaction_type_id ))
     conn.commit()
     conn.close()
+
+def get_transaction_type_by_id(transaction_type_id) :
+    conn = get_connection()
+    cur = conn.cursor()
+    sql_query = """ 
+        SELECT * FROM transaction_type by id = %s
+    """
+    cur.execute(sql_query ,(transaction_type_id ,))
+    result = cur.fetchone()
+    cur.close()
+    conn.close()
+    return result

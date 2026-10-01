@@ -72,5 +72,16 @@ def update_transaction(transaction_id ,amount, category_id, note, spent_on , tra
     conn.commit()
     conn.close()
 
+def get_transaction_by_id (transaction_id) :
+    conn = get_connection()
+    cur = conn.cursor()
+    sql_query = """ 
+        SELECT * FROM transactions WHERE transaction_id = %s
+    """
+    cur.execute(sql_query , (transaction_id,))
+    result = cur.fetchone()
+    cur.close()
+    conn.close()
+    return result
 
 

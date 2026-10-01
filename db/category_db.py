@@ -1,4 +1,4 @@
-from src.transactions_db import get_connection
+from db.transactions_db import get_connection
 
 def get_all_categories() :
     conn = get_connection()
@@ -48,3 +48,16 @@ def update_category(category_id , category_name):
     cur.execute(sql_query, (category_name ,category_id ))
     conn.commit()
     conn.close()
+
+
+def get_category_by_id(category_id) :
+    conn = get_connection()
+    cur = conn.cursor()
+    sql_query = """ 
+        SELECT * FROM categories by id = %s
+    """
+    cur.execute(sql_query ,(category_id ,))
+    result = cur.fetchone()
+    cur.close()
+    conn.close()
+    return result
