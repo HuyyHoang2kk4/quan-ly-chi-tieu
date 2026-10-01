@@ -22,15 +22,15 @@ def get_connection():
     return conn 
 
 
-def add_expense(amount, category, note, spent_on):
+def add_expense(amount, category_id, note, spent_on):
     conn = get_connection()
     cur = conn.cursor()
     sql_query = """
-        INSERT INTO expenses (amount, category, note, spent_on) 
+        INSERT INTO expenses (amount, category_id, note, spent_on) 
         VALUES (%s, %s, %s, %s)
 
     """
-    cur.execute(sql_query, (amount, category, note, spent_on))
+    cur.execute(sql_query, (amount, category_id, note, spent_on))
     conn.commit()
 
     # cur.close()
@@ -59,29 +59,17 @@ def delete_expense(delete_id):
     conn.commit()
     conn.close()
 
-def update_expense(expense_id ,amount, category, note, spent_on):
+def update_expense(expense_id ,amount, category_id, note, spent_on):
     conn = get_connection()
-
     cur = conn.cursor()
-
     sql_query = """ 
         UPDATE expenses
-        SET amount = %s , category = %s , note = %s , spent_on=%s
+        SET amount = %s , category_id = %s , note = %s , spent_on=%s
         WHERE id = %s 
     """
-
-    cur.execute(sql_query, (amount, category, note, spent_on,expense_id,))
-
+    cur.execute(sql_query, (amount, category_id, note, spent_on,expense_id,))
     conn.commit()
-
     conn.close()
 
 
-
-if __name__ == "__main__":
-    # print(result)
-
-    update_expense(2 , 9999999 ,"UPDATE ", "UPDATE" , "2026-10-10")
-    result = get_all_expense()
-    print(result)
 

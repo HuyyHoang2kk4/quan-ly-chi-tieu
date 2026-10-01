@@ -12,12 +12,12 @@ DỰ ÁN: EXPENSE TRACKER (ỨNG DỤNG DESKTOP QUẢN LÝ CHI TIÊU)
 - Giao diện: cửa sổ desktop bằng Tkinter (có thể thêm ttkbootstrap cho đẹp).
 - Database: PostgreSQL, kết nối bằng psycopg (hoặc psycopg2). Cấu hình kết nối đọc từ biến môi trường / file .env, không hard-code mật khẩu.
 - Quản lý mã nguồn: Sử dụng Git với quy trình tạo Branch (phân nhánh) cho từng tính năng rồi mới Merge vào nhánh main.
-- Bảng expenses: id (khóa chính tự tăng), amount (số tiền, kiểu số), category (danh mục), note (ghi chú), spent_on (ngày chi, kiểu DATE), created_at (thời điểm tạo).
-- Chức năng: thêm khoản chi; xem danh sách trong bảng (Treeview); xóa khoản chi đã chọn; lọc theo tháng và danh mục; thống kê tổng chi và tổng theo từng danh mục; biểu đồ theo danh mục bằng Matplotlib (chỉ làm nếu còn thời gian); báo lỗi bằng hộp thoại khi nhập sai, không để ứng dụng crash.
-- Kiến trúc tách lớp:
-  db.py (chỉ làm việc với Postgres: kết nối, tạo bảng, insert/select/delete),
-  logic.py (kiểm tra dữ liệu đầu vào, xử lý và thống kê, KHÔNG import tkinter),
-  app.py (giao diện Tkinter, gọi hàm từ logic.py),
+- Bảng expenses: id (khóa chính tự tăng), amount (số tiền, kiểu số), category (danh mục, chỉ chọn từ danh sách cố định), note (ghi chú), spent_on (ngày chi, kiểu DATE), created_at (thời điểm tạo).
+- Chức năng: thêm khoản chi (category dạng dropdown chọn sẵn); xem danh sách trong bảng (Treeview); xóa khoản chi đã chọn; lọc theo tháng và danh mục; thống kê tổng chi và tổng theo từng danh mục; biểu đồ theo danh mục bằng Matplotlib (chỉ làm nếu còn thời gian); báo lỗi bằng hộp thoại khi nhập sai, không để ứng dụng crash.
+- Kiến trúc tách lớp (gom chung vào thư mục src/ cho gọn gàng):
+  src/db.py (chỉ làm việc với Postgres: kết nối, tạo bảng, insert/select/delete),
+  src/logic.py (kiểm tra dữ liệu đầu vào, xử lý và thống kê, KHÔNG import tkinter),
+  src/app.py (giao diện Tkinter, gọi hàm từ logic.py),
   test_logic.py (pytest),
   bug_log.md, README.md.
 - Bắt buộc dùng câu lệnh SQL có tham số (%s), không nối chuỗi, và giải thích cho tôi vì sao.
