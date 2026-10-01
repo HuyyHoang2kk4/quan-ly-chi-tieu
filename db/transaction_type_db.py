@@ -53,7 +53,7 @@ def get_transaction_type_by_id(transaction_type_id) :
     conn = get_connection()
     cur = conn.cursor()
     sql_query = """ 
-        SELECT * FROM transaction_type by id = %s
+        SELECT * FROM transaction_type WHERE id = %s
     """
     cur.execute(sql_query ,(transaction_type_id ,))
     result = cur.fetchone()

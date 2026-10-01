@@ -30,7 +30,7 @@ def delete_category(category_id):
     conn = get_connection()
     cur = conn.cursor()
     sql_query = """ 
-        DELETE FROM categories where category_id = %s 
+        DELETE FROM categories WHERE category_id = %s 
     """
     cur.execute(sql_query , (category_id,))
     conn.commit()
@@ -54,7 +54,7 @@ def get_category_by_id(category_id) :
     conn = get_connection()
     cur = conn.cursor()
     sql_query = """ 
-        SELECT * FROM categories by id = %s
+        SELECT * FROM categories WHERE category_id  = %s
     """
     cur.execute(sql_query ,(category_id ,))
     result = cur.fetchone()
