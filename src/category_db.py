@@ -1,4 +1,4 @@
-from src.db import get_connection
+from src.transactions_db import get_connection
 
 def get_all_categories() :
     conn = get_connection()
@@ -13,15 +13,15 @@ def get_all_categories() :
     return categories_list
 
 
-def add_category(name_category):
+def add_category(category_name):
     conn = get_connection()
     cur = conn.cursor()
     sql_query = """
-        INSERT INTO categories (name_category) 
+        INSERT INTO categories (category_name) 
         VALUES (%s)
 
     """
-    cur.execute(sql_query, (name_category,))
+    cur.execute(sql_query, (category_name,))
     conn.commit()
     cur.close()
     conn.close()
@@ -30,7 +30,7 @@ def delete_category(category_id):
     conn = get_connection()
     cur = conn.cursor()
     sql_query = """ 
-        DELETE FROM categories where id = %s 
+        DELETE FROM categories where category_id = %s 
     """
     cur.execute(sql_query , (category_id,))
     conn.commit()
@@ -42,8 +42,8 @@ def update_category(category_id , category_name):
     cur = conn.cursor()
     sql_query = """ 
         UPDATE categories
-        SET name_category = %s
-        WHERE id = %s 
+        SET category_name = %s
+        WHERE category_id = %s 
     """
     cur.execute(sql_query, (category_name ,category_id ))
     conn.commit()
