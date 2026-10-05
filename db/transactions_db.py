@@ -39,7 +39,7 @@ def get_all_transaction():
     conn = get_connection()
     cur = conn.cursor()
     sql_query = """
-        SELECT transactions.transaction_id , transactions.amount , categories.name_category , transactions.note , transactions.spent_on , transaction_type.transaction_type_name
+        SELECT transactions.transaction_id , transactions.amount , categories.category_name , transactions.note , transactions.spent_on , transaction_type.transaction_type_name
         FROM transactions
         JOIN categories ON transactions.category_id = categories.category_id
         JOIN transaction_type ON transactions.transaction_type_id = transaction_type.transaction_type_id ;

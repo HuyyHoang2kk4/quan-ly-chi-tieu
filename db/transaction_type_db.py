@@ -30,7 +30,7 @@ def delete_transaction_type(transaction_type_id):
     conn = get_connection()
     cur = conn.cursor()
     sql_query = """ 
-        DELETE FROM transaction_type where transaction_type_id = %s 
+        DELETE FROM transaction_type WHERE transaction_type_id = %s 
     """
     cur.execute(sql_query , (transaction_type_id,))
     conn.commit()
